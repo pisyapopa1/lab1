@@ -5,7 +5,7 @@ using System;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace YourNamespace.Controllers
+namespace lab1.Controllers
 {
     public class HomeController : Controller
     {
@@ -58,10 +58,14 @@ namespace YourNamespace.Controllers
             }
             catch (Exception ex)
             {
-                // Логируем ошибку
-                Console.WriteLine($"Ошибка при отправке email: {ex.Message}");
+                Console.WriteLine($"Помилка при відправці Email: {ex.Message}");
                 return false;
             }
+        }
+
+        public IActionResult Index()
+        {
+            return View();
         }
     }
 }

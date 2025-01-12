@@ -65,7 +65,7 @@ namespace lab1.Logging
         }
     }
 }
-namespace YourNamespace.Logging
+namespace lab1.Logging
 {
     public class FileLoggerProvider : ILoggerProvider
     {
@@ -88,7 +88,7 @@ namespace YourNamespace.Logging
     }
 }
 
-namespace YourNamespace.Logging
+namespace lab1.Logging
 {
     public static class FileLoggerExtensions
     {

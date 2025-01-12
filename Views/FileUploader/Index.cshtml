@@ -1,0 +1,18 @@
+﻿@{
+	ViewData["Title"] = "Завантаження файлів";
+}
+
+<h2>Завантаження файлів</h2>
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+	<div>
+		<label for="file">Оберіть файл:</label>
+		<input type="file" id="file" name="file" />
+	</div>
+	<button type="submit">Завантажити</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+	<p>@ViewBag.Message</p>
+}

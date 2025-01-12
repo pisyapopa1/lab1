@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using lab1.Logging;
+using Serilog;
 
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddMvc(); // Для ASP.NET Core 2.x используем AddMvc вместо AddControllersWithViews
+        services.AddMvc();
     }
 
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IWebHostEnvironment env, ILoggerFactory loggerFactory)
     {
         if (env.IsDevelopment())
         {
@@ -24,8 +25,7 @@ public class Startup
 
         app.UseStaticFiles();
 
-        // Добавляем файл для записи логов
-        loggerFactory.AddFile("logs/log.txt");
+        loggerFactory.AddProvider(new FileLoggerProvider("logs/log.txt"));
 
         app.UseMvc(routes =>
         {
