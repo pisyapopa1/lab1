@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
@@ -44,6 +45,17 @@ namespace lab1.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult ChangeLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddDays(30) }
+            );
+
+            return LocalRedirect(returnUrl ?? "/");
+        }
         private async Task<bool> SendEmailAsync(string email, string subject, string message)
         {
             try

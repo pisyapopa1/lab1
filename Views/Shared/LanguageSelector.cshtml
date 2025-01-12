@@ -1,0 +1,20 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    var currentCulture = CultureInfo.CurrentUICulture.Name;
+}
+
+<div>
+    <form asp-controller="Home" asp-action="ChangeLanguage" method="post">
+        <select name="culture" onchange="this.form.submit();">
+            <option value="en" selected="@(currentCulture == "en")">
+                @Localizer["Language"] (English)
+            </option>
+            <option value="uk" selected="@(currentCulture == "uk")">
+                @Localizer["Language"] (Українська)
+            </option>
+        </select>
+        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+    </form>
+</div>
