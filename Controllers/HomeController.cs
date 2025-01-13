@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using lab1.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -56,6 +57,21 @@ namespace lab1.Controllers
 
             return LocalRedirect(returnUrl ?? "/");
         }
+        public IActionResult Submit()
+        {
+            var model = new UserModel();
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Submit(UserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            return Content("Validation passed!");
+        }
+
         private async Task<bool> SendEmailAsync(string email, string subject, string message)
         {
             try

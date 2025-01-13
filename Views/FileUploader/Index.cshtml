@@ -16,3 +16,12 @@
 {
 	<p>@ViewBag.Message</p>
 }
+
+<div>
+	@await Component.InvokeAsync("RecentArticles")
+</div>
+
+@if (ViewBag.Message != null)
+{
+	<p>@ViewBag.Message</p>
+}
